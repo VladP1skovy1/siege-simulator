@@ -4,7 +4,7 @@ This project simulates siege strategies using Evolutionary Algorithms within the
 
 ## Downloads & Execution Modes
 
-You can download the full project source code and pre-built executable files from OneDrive:
+You can download the full project source code and pre-built executable files from GitHub:
 
 **[Download Project Files Here](https://github.com/VladP1skovy1/siege-simulator)**  
 There are two ways to run this simulator:
@@ -30,7 +30,7 @@ Before opening the source code, ensure you have the following installed:
 
 ## Installation
 
-1.  **Unzip the Project**: Extract the downloaded archive (from the OneDrive link above) to a folder on your computer.
+1.  **Unzip the Project**: Extract the downloaded archive (from the GitHub link above) to a folder on your computer.
 2.  **Add to Unity Hub**:
     * Open Unity Hub.
     * Click on the **"Projects"** tab.

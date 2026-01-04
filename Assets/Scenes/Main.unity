@@ -2017,10 +2017,10 @@ MonoBehaviour:
   epochCount: 100
   maxArmyCost: 1010
   populationSize: 50
-  isRandom: 0
+  isRandom: 1
   isLocal: 0
   isEvolutionary: 0
-  isMemetic: 1
+  isMemetic: 0
   perturbationType: Mix
   selectionType: Tournament
   crossoverType: Uniform
