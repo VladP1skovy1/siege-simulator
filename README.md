@@ -4,7 +4,7 @@ This project simulates siege strategies using Evolutionary Algorithms within the
 
 ## Downloads & Execution Modes
 
-You can download the full project source code and pre-built executable files from OneDrive:
+You can download the full project source code and pre-built executable files from GitHub:
 
 **[Download Project Files Here](https://github.com/VladP1skovy1/siege-simulator)**  
 There are two ways to run this simulator:
