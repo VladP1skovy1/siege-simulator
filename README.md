@@ -6,7 +6,7 @@ This project simulates siege strategies using Evolutionary Algorithms within the
 
 **To get started, please visit the GitHub repository:**
 
-👉 **[Go to GitHub Repository](INSERT_LINK_HERE)** 👈
+👉 **[Go to GitHub Repository](https://github.com/VladP1skovy1/siege-simulator)** 👈
 
 From there, you have two options depending on your needs:
 
