@@ -13,19 +13,17 @@ public class GridVisual : MonoBehaviour
     
     private void OnDrawGizmos()
     {
-        if (_grid == null)
-            return;
         
         Gizmos.color = Color.gray;
         
-        for (int y = 0; y < _grid.Height; y++)
+        for (int y = 0; y < 40; y++)
         {
-            for (int x = 0; x < _grid.Width; x++)
+            for (int x = 0; x < 40; x++)
             {
                 Vector3 transformPosition = transform.position + transform.forward.normalized * 1f * y;
-                Gizmos.DrawLine(transformPosition, transformPosition + transform.right.normalized * 1f * _grid.Height);
+                Gizmos.DrawLine(transformPosition, transformPosition + transform.right.normalized * 1f * 40);
                 transformPosition = transform.position + transform.right.normalized * 1f * x;
-                Gizmos.DrawLine(transformPosition, transformPosition + transform.forward.normalized * 1f * _grid.Width);
+                Gizmos.DrawLine(transformPosition, transformPosition + transform.forward.normalized * 1f * 40);
             }
         }
     }

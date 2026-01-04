@@ -7,7 +7,9 @@ public class BuildingSystem : MonoBehaviour
     
     [SerializeField] private GameObject gridVisual;
     [SerializeField] private List<GameObject> towers = new();
-    // [SerializeField] private List<GameObject> walls = new();
+    [SerializeField] private List<GameObject> walls = new();
+    [SerializeField] private List<GameObject> goldMines = new();
+    [SerializeField] private List<GameObject> townhalls = new();
     
     private Vector3 _gridOriginPosition;
     private float _gridCellSize;
@@ -28,10 +30,20 @@ public class BuildingSystem : MonoBehaviour
             AddBuildingToGrid(building);
         }
         
-        // foreach (GameObject building in walls)
-        // {
-        //     AddBuildingToGrid(building);
-        // }
+        foreach (GameObject building in walls)
+        {
+            AddBuildingToGrid(building);
+        }
+        
+        foreach (GameObject building in goldMines)
+        {
+            AddBuildingToGrid(building);
+        }
+        
+        foreach (GameObject building in townhalls)
+        {
+            AddBuildingToGrid(building);
+        }
     }
 
 
@@ -50,9 +62,8 @@ public class BuildingSystem : MonoBehaviour
     {
         Vector2Int buildingGridPosition = WorldToGrid(buildingObject.transform.position);
         BuildingVisual visual = buildingObject.GetComponent<BuildingVisual>();
-       
-        Debug.Log(buildingGridPosition);
-        if (!_grid.CanPlace(buildingGridPosition.x, buildingGridPosition.y, visual.Size))
+        
+        if (!_grid.CanPlace(buildingGridPosition.x, buildingGridPosition.y, visual.SizeX, visual.SizeY))
         {
             Debug.LogWarning("Cells are already occupied, cannot add building");
         }

@@ -36,12 +36,6 @@ public class WarriorVisual : MonoBehaviour
 
     private void Update()
     {
-        // if (Logic == null) return;
-        //
-        // _targetPosition = CalculateWorldPosition();
-        // transform.position = _targetPosition;
-        //
-        //
         if (Logic == null) return;
         
         Vector3 targetPosition = CalculateWorldPosition();
@@ -104,6 +98,6 @@ public class WarriorVisual : MonoBehaviour
     }
     protected Vector3 CalculateWorldPosition()
     {
-        return GridVisual.transform.position + new Vector3(Logic.OriginCell.X, size, Logic.OriginCell.Y);
+        return GridVisual.transform.position + new Vector3(Logic.OriginCell.X + 0.5f, size, Logic.OriginCell.Y + 0.5f);
     }
 }

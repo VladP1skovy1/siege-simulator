@@ -2,18 +2,26 @@ using System.Collections.Generic;
 
 public abstract class Building
 {
-   private int Health { get; set; }
-   public int Size { get; private set; }
+   public int Health { get; private set; }
+   public int SizeX { get; private set; }
+   public int SizeY { get; private set; }
+   public int ScoreValue { get; private set; }
    public bool IsDestroyed { get; private set; }
+   public bool IsWall { get; private set; }
    public GridCell OriginCell { get; private set; }
+   
+   public virtual bool IsDefense => false;
    
    public event System.Action OnDestroyed;
    
-   protected Building(int size, int health, GridCell origin)
+   protected Building(int sizeX, int sizeY, int health, int scoreValue, bool isWall, GridCell origin)
    {
-      Size = size;
+      SizeX= sizeX;
+      SizeY= sizeY;
       Health = health;
       OriginCell = origin;
+      ScoreValue = scoreValue;
+      IsWall = isWall;
       IsDestroyed =  false;
    }
    public virtual void BuildingUpdate(float dt, List<Warrior> warriors)

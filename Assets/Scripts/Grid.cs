@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using UnityEngine;
 
 
 public class Grid
@@ -35,45 +36,52 @@ public class Grid
     {
         Buildings.Add(building);
         SetCellsOccupied(building, true);
+        
+        building.OnDestroyed += () => SetCellsOccupied(building, false);
     }
     
     public void RemoveBuilding(Building building)
     {
-        Buildings.Remove(building);
         SetCellsOccupied(building, false);
     }
   
     
     private void SetCellsOccupied(Building building, bool isOccupied)
     {
-        int half = building.Size / 2;
+        int halfX = building.SizeX / 2;
+        int halfY = building.SizeY / 2;
 
-        for (int dx = -half; dx <= half; dx++)
-        for (int dy = -half; dy <= half; dy++)
+        for (int dx = -halfX; dx < -halfX + building.SizeX; dx++)
         {
-            int cx = building.OriginCell.X + dx;
-            int cy = building.OriginCell.Y + dy;
+            for (int dy = -halfY; dy < -halfY + building.SizeY; dy++)
+            {
+                int cx = building.OriginCell.X + dx;
+                int cy = building.OriginCell.Y + dy;
             
-            
-            if (!IsInside(cx, cy))
-                continue;
-
-            _grid[cx, cy].IsOccupied = isOccupied;
+                if (IsInside(cx, cy))
+                {
+                    _grid[cx, cy].IsOccupied = isOccupied;
+                    _grid[cx, cy].BuildingRef = isOccupied ? building : null;
+                }
+            }
         }
     }
     
-    public bool CanPlace(int x, int y, int size)
+    public bool CanPlace(int x, int y, int sizeX, int sizeY)
     {
-        int half = size / 2;
+        int halfX = sizeX / 2;
+        int halfY = sizeY / 2;
 
-        for (int dx = -half; dx <= half; dx++)
-        for (int dy = -half; dy <= half; dy++)
+        for (int dx = -halfX; dx < -halfX + sizeX; dx++)
         {
-            int cx = x + dx;
-            int cy = y + dy;
+            for (int dy = -halfY; dy < -halfY + sizeY; dy++)
+            {
+                int cx = x + dx;
+                int cy = y + dy;
 
-            if (!IsInside(cx, cy)) return false;
-            if (_grid[cx, cy].IsOccupied) return false;
+                if (!IsInside(cx, cy)) return false;
+                if (_grid[cx, cy].IsOccupied) return false;
+            }
         }
 
         return true;
@@ -102,6 +110,56 @@ public class Grid
     public GridCell GetCell(int x, int y)
     {
         return _grid[x, y];
+    }
+    
+    
+    
+    public bool HasLineOfSight(int x0, int y0, int x1, int y1)
+    {
+        // Алгоритм Брезенхема для проверки линии на сетке
+        int dx = Mathf.Abs(x1 - x0);
+        int dy = Mathf.Abs(y1 - y0);
+        int sx = x0 < x1 ? 1 : -1;
+        int sy = y0 < y1 ? 1 : -1;
+        int err = dx - dy;
+
+        while (true)
+        {
+            // 1. Если мы дошли до клетки цели — значит путь чист
+            if (x0 == x1 && y0 == y1) 
+            {
+                return true;
+            }
+
+            // 2. Проверка текущей клетки на наличие СТЕНЫ
+            // (Мы пропускаем проверку, если это стартовая клетка, чтобы юнит не блокировал сам себя, 
+            // хотя юниты обычно не стоят ВНУТРИ стен)
+            GridCell cell = GetCell(x0, y0);
+        
+            if (cell.IsOccupied && cell.BuildingRef != null)
+            {
+                // Если на пути стена — обзор перекрыт
+                if (cell.BuildingRef.IsWall)
+                {
+                    return false;
+                }
+                // Опционально: Если вы хотите, чтобы ОБЫЧНЫЕ здания тоже блокировали стрельбу,
+                // уберите проверку .IsWall. Но обычно стреляют через здания, но не через стены.
+            }
+
+            // 3. Переход к следующей клетке
+            int e2 = 2 * err;
+            if (e2 > -dy) 
+            {
+                err -= dy;
+                x0 += sx;
+            }
+            if (e2 < dx) 
+            {
+                err += dx;
+                y0 += sy;
+            }
+        }
     }
 
     

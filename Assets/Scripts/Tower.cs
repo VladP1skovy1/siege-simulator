@@ -3,16 +3,18 @@ using UnityEngine;
 
 public class Tower : Building
 {
-    private int FireRange { get; set; }
-    private float FireRate { get; set; }
-    private int Damage { get; set; }
+    public int FireRange { get; set; }
+    public float FireRate { get; set; }
+    public int Damage { get; set; }
     
     private Warrior _currentTarget;
     private float _coolDown;
     
+    public override bool IsDefense => true;
+    
     public event System.Action<Warrior> OnTowerShoot;
     
-    public Tower(int size, int health, GridCell origin, Warrior currentTarget, float coolDown, int fireRange, float fireRate, int damage) : base(size, health, origin)
+    public Tower(int sizeX, int sizeY, int health, int score,  float coolDown, int fireRange, float fireRate, int damage, GridCell origin, Warrior currentTarget) : base(sizeX, sizeY, health, score, false, origin)
     {
         _currentTarget = currentTarget;
         _coolDown = coolDown;

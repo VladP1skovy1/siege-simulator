@@ -3,8 +3,9 @@ using UnityEngine;
 public class TowerVisual : BuildingVisual
 {
     [SerializeField] private int fireRange;
-    [SerializeField] private int fireRate;
+    [SerializeField] private float fireRate;
     [SerializeField] private int damage;
+    
     
     [SerializeField] private GameObject arrowPrefab;
     [SerializeField] private Transform arrowSpawnPoint;
@@ -14,14 +15,16 @@ public class TowerVisual : BuildingVisual
     public override Building CreateLogic(GridCell origin)
     {
         _tower = new Tower(
-            size,
+            sizeX,
+            sizeY,
             health,
-            origin,
-            null,
-            0,
+            score,
+            0f,
             fireRange,
             fireRate,
-            damage
+            damage,
+            origin,
+            null
         );
         Logic = _tower;
         base.CreateLogic(origin);
