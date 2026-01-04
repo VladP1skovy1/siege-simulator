@@ -30,7 +30,7 @@ Before opening the source code, ensure you have the following installed:
 
 ## Installation
 
-1.  **Unzip the Project**: Extract the downloaded archive (from the OneDrive link above) to a folder on your computer.
+1.  **Unzip the Project**: Extract the downloaded archive (from the GitHub link above) to a folder on your computer.
 2.  **Add to Unity Hub**:
     * Open Unity Hub.
     * Click on the **"Projects"** tab.
