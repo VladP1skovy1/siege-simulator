@@ -86,13 +86,13 @@ MonoBehaviour:
   sizeX: 3
   sizeY: 3
   health: 800
+  score: 15
   intactModel: {fileID: 5299801260652103349}
   destroyedModel: {fileID: 154359190511921194}
   gridVisual: {fileID: 0}
   fireRange: 10
   fireRate: 10
   damage: 35
-  score: 15
   arrowPrefab: {fileID: 3489599056247954083, guid: 1069b0ec33991c341840689c7ee48e98, type: 3}
   arrowSpawnPoint: {fileID: 5450847492579333500}
 --- !u!1 &3815102140361133765

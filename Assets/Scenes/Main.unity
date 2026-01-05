@@ -2015,7 +2015,7 @@ MonoBehaviour:
   endCostText: {fileID: 948684057}
   epochText: {fileID: 0}
   epochCount: 100
-  maxArmyCost: 1010
+  maxArmyCost: 2500
   populationSize: 50
   isRandom: 1
   isLocal: 0
